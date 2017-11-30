@@ -1,0 +1,34 @@
+<div class='container-fluid'>
+    <div class='row'>
+        <div class="col-sm-12">
+            <button class="btn btn-default" (click)="toogleProductForm()">Add new</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Price</th>
+                        <th>Company</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of productsList">
+                        <td>{{product.id}}</td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.ageRestriction}}</td>
+                        <td>${{product.price}}</td>
+                        <td>{{product.company}}</td>
+                        <td><a (click)="updateProduct(product)">Update</a> <a (click)="removeProduct(product)">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<inputForm *ngIf="showProductForm" [productToLoad]="formItemLoaded" (productUpdated)="onProductUpdated($event)"></inputForm>

@@ -1,0 +1,31 @@
+<div class='container-fluid'>
+    <div class='row'>
+        <div class="col-sm-12">
+            <h1>Product</h1>
+        </div>
+    </div>
+    <div class="row form-spacing">
+        <div class="col-sm-1">Name</div>
+        <div class="col-sm-11"><input type="text" [(ngModel)]="tempProduct.name"></div>
+    </div>
+    <div class="row form-spacing">
+        <div class="col-sm-1">Price</div>
+        <div class="col-sm-11"><input type="number" [(ngModel)]="tempProduct.price"></div>
+    </div>
+    <div class="row form-spacing">
+        <div class="col-sm-1">Company</div>
+        <div class="col-sm-11"><input type="text" [(ngModel)]="tempProduct.company"></div>
+    </div>
+    <div class="row form-spacing">
+        <div class="col-sm-1">Maximum Age</div>
+        <div class="col-sm-11"><input type="number" [(ngModel)]=tempProduct.ageRestriction></div>
+    </div>
+    <div class="row form-spacing">
+        <div class="col-sm-1">Description</div>
+        <div class="col-sm-11"><input type="text" [(ngModel)]="tempProduct.description"></div>
+    </div>    
+    <div class="form-spacing">
+        <div class="col-sm-6" class="btn btn-success" (click)="saveChanges()">Save</div>
+        <div class="col-sm-6" class="btn btn-danger" (click)="discardChanges()">Cancel</div>
+    </div>
+</div>
