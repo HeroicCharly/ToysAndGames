@@ -7,17 +7,24 @@ using ToysAndGames.Models;
 
 namespace ToysAndGames.Controllers
 {
-    [Route("api/[controller]")]
+    //api/Product/GetAllProducts
+    [Route("api/[controller]/[action]")]
     public class ProductController : Controller
     {
         [HttpGet]
-        public IEnumerable<Product> GetAllProducts(){
+        public IEnumerable<Product> GetAllProducts()
+        {
             //TODO Finish the repository
-            return null;
+            var productsList = new List<Product>();
+            productsList.Add(new Product(1, "Stuffed Lion", "Stuffed animal", 10, "Mattel", 100));
+            productsList.Add(new Product(2, "Boardgame", "board game", 11, "Mattel", 10));
+
+            return productsList;
         }
 
         [HttpPost]
-        public bool SaveProducts(){
+        public bool SaveProducts([FromBody]IEnumerable<Product> productsList)
+        {
             //TODO: Implement saving to JSON
 
             return false;

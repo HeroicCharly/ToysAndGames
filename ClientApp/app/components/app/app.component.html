@@ -1,7 +1,10 @@
 <div class='container-fluid'>
     <div class='row'>
-        <div class="col-sm-12">
+        <div class="col-sm-6">
             <button class="btn btn-default" (click)="toogleProductForm()">Add new</button>
+        </div>
+        <div class="col-sm-6">
+            <button class="btn btn-success" (click)="saveProducts()">Save Products</button>
         </div>
     </div>
     <div class="row">
@@ -31,4 +34,8 @@
         </div>
     </div>
 </div>
-<inputForm *ngIf="showProductForm" [productToLoad]="formItemLoaded" (productUpdated)="onProductUpdated($event)"></inputForm>
+<inputForm *ngIf="showProductForm" 
+[maximumId]="lastIndex" 
+[productToLoad]="formItemLoaded" 
+(productUpdated)="onProductUpdated($event)" 
+(productCreated)="onProductCreated($event)"></inputForm>
