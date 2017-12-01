@@ -30,20 +30,13 @@ namespace ToysAndGames.Services.Services
 
         public bool SaveProducts(IEnumerable<Product> productsList)
         {
-            try
+            if (productsList.Count() > 0)
             {
-                if (productsList.Count() > 0)
-                {
-                    return _productRepository.SaveProducts(productsList);
-                }
-                else
-                {
-                    throw new ArgumentException();
-                }
+                return _productRepository.SaveProducts(productsList);
             }
-            catch (Exception error)
+            else
             {
-                throw new Exception("ProductService/SaveProducts() CRASHED",error.InnerException);
+                throw new ArgumentException();
             }
         }
     }

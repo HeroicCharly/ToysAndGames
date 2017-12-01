@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ToysAndGames.Models.IRepositories;
 using ToysAndGames.Models.Repositories;
+using ToysAndGames.Services.IServices;
+using ToysAndGames.Services.Services;
 
 namespace ToysAndGames
 {
@@ -27,8 +29,12 @@ namespace ToysAndGames
             services.AddMvc();
 
             //Dependency Injection
+
             //Repositories
             services.AddTransient<IProductRepository,ProductRepository>();
+
+            //Services
+            services.AddTransient<IProductService, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,1 @@
+[{"Id":1,"Name":"Stuffed Lion","Description":"Stuffed animal","AgeRestriction":10,"Company":"Mattel","Price":100.0},{"Id":2,"Name":"Boardgame","Description":"board game","AgeRestriction":11,"Company":"Mattel","Price":10.0},{"Id":4,"Name":"Car","Description":"Collectible Delorean","AgeRestriction":4,"Company":"Hotwheels","Price":14.0}]

@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ToysAndGames.Models;
+using ToysAndGames.Services.IServices;
+using ToysAndGames.Services.Services;
 
 namespace ToysAndGames.Controllers
 {
@@ -11,23 +14,43 @@ namespace ToysAndGames.Controllers
     [Route("api/[controller]/[action]")]
     public class ProductController : Controller
     {
+        private readonly IProductService _productService;
+
+        public ProductController(IProductService productService)
+        {
+            this._productService = productService;
+        }
+
         [HttpGet]
         public IEnumerable<Product> GetAllProducts()
         {
-            //TODO Finish the repository
-            var productsList = new List<Product>();
-            productsList.Add(new Product(1, "Stuffed Lion", "Stuffed animal", 10, "Mattel", 100));
-            productsList.Add(new Product(2, "Boardgame", "board game", 11, "Mattel", 10));
-
-            return productsList;
+            try
+            {
+                return this._productService.GetAllProducts();
+            }
+            catch (Exception errror)
+            {
+                throw new Exception("Error loading the products", errror.InnerException);
+            }
         }
 
         [HttpPost]
         public bool SaveProducts([FromBody]IEnumerable<Product> productsList)
         {
-            //TODO: Implement saving to JSON
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    this._productService.SaveProducts(productsList);
+                    return true;
+                }
 
-            return false;
+                return false;
+            }
+            catch (Exception error)
+            {
+                throw new Exception("Error saving products", error.InnerException);
+            }
         }
     }
 }
