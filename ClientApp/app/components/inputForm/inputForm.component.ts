@@ -35,7 +35,7 @@ export class InputFormComponent {
 
     public saveChanges(): void {
         console.log("..::SAVING::..");
-
+        console.log(this.tempProduct);
         if (this.isNewProduct) {
             //We add 1 to the maximum id registered
             this.tempProduct.id = this.maximumId + 1;

@@ -27,9 +27,6 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.loadProductsFromDataBase();
-        if (this.productsList.length > 0) {
-            this.lastIndex = this.productsList[this.productsList.length - 1].id;
-        }
     }
 
     //PRIVATE METHODS
@@ -45,8 +42,13 @@ export class AppComponent implements OnInit {
             });
     }
 
+    getLastProductIndex(): number {
+        return this.productsList[this.productsList.length - 1].id;
+    }
+
     //PUBLIC METHODS
     public toogleProductForm(): void {
+        this.lastIndex = this.getLastProductIndex();
         this.showProductForm = this.showProductForm ? false : true;
     }
 
@@ -60,7 +62,7 @@ export class AppComponent implements OnInit {
         this.formItemLoaded = this.productsList.filter(x => x.id === itemToUpdate.id)[0];
     }
 
-    public saveProducts(){
+    public saveProducts() {
         this.productService.saveProducts(this.productsList).subscribe(data => console.log(data));
     }
 
@@ -75,6 +77,7 @@ export class AppComponent implements OnInit {
     }
 
     public onProductCreated(productCreated: product) {
+        console.log(productCreated);
         this.showProductForm = false;
         this.productsList.push(productCreated);
     }

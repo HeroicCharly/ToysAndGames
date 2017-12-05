@@ -1,31 +1,61 @@
 <div class='container-fluid'>
-    <div class='row'>
-        <div class="col-sm-12">
-            <h1>Product</h1>
+
+    <form #productForm="ngForm" autocomplete="off">
+        <!--Product Name-->
+        <div class="form-group">
+            <label for="name" class="col-sm-1">Name:</label>
+            <input id="name" name="name" type="text" class="form-control" [(ngModel)]="tempProduct.name" #name="ngModel" maxlength="50"
+                required>
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                <div *ngIf="name.errors.required">Name is required.</div>
+            </div>
         </div>
-    </div>
-    <div class="row form-spacing">
-        <div class="col-sm-1">Name</div>
-        <div class="col-sm-11"><input type="text" [(ngModel)]="tempProduct.name"></div>
-    </div>
-    <div class="row form-spacing">
-        <div class="col-sm-1">Price</div>
-        <div class="col-sm-11"><input type="number" [(ngModel)]="tempProduct.price"></div>
-    </div>
-    <div class="row form-spacing">
-        <div class="col-sm-1">Company</div>
-        <div class="col-sm-11"><input type="text" [(ngModel)]="tempProduct.company"></div>
-    </div>
-    <div class="row form-spacing">
-        <div class="col-sm-1">Maximum Age</div>
-        <div class="col-sm-11"><input type="number" [(ngModel)]=tempProduct.ageRestriction></div>
-    </div>
-    <div class="row form-spacing">
-        <div class="col-sm-1">Description</div>
-        <div class="col-sm-11"><input type="text" [(ngModel)]="tempProduct.description"></div>
-    </div>    
-    <div class="form-spacing">
-        <div class="col-sm-6" class="btn btn-success" (click)="saveChanges()">Save</div>
-        <div class="col-sm-6" class="btn btn-danger" (click)="discardChanges()">Cancel</div>
-    </div>
+
+        <!--Product Price-->
+        <div class="form-group">
+            <label for="price" class="col-sm-1">Price:</label>
+            <input id="price" name="price" type="number" class="form-control" [(ngModel)]="tempProduct.price" #price="ngModel" min="1"
+                max="1000" required>
+            <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+                <div *ngIf="price.value <= 0 || price.value > 1000">Price must be between $1 and $1000.</div>
+            </div>
+        </div>
+
+        <!--Product Company-->
+        <div class="form-group">
+            <label for="company" class="col-sm-1">Company:</label>
+            <input id="company" name="company" type="text" class="form-control" [(ngModel)]="tempProduct.company" #company="ngModel"
+                maxlength="50" required>
+            <div *ngIf="company.invalid && (company.dirty || company.touched)" class="alert alert-danger">
+                <div *ngIf="company.errors.required">There's no company name assignated.</div>
+            </div>
+        </div>
+
+        <!--Product Age Restriction-->
+        <div class="form-group">
+            <label for="ageRestriction" class="col-sm-1">Age Restriction:</label>
+            <input id="ageRestriction" name="ageRestriction" type="number" class="form-control" [(ngModel)]="tempProduct.ageRestriction"
+                #ageRestriction="ngModel" min="0" max="100">
+            <div *ngIf="ageRestriction.invalid && (ageRestriction.dirty || ageRestriction.touched)" class="alert alert-danger">
+                <div *ngIf="ageRestriction.errors.required">Age must be between 0 and 100.</div>
+            </div>
+        </div>
+
+        <!--Product Description-->
+        <div class="form-group">
+            <label for="description" class="col-sm-1">Description:</label>
+            <input id="description" name="description" type="text" class="form-control" [(ngModel)]="tempProduct.description" #description="ngModel"
+                maxlength="100">
+        </div>
+
+        <!-- Form Buttons -->
+        <div class="form-spacing">
+            <div class="col-sm-6">
+                <button type="submit" class="btn btn-success" (click)="saveChanges()" [disabled]="productForm.invalid">Save</button>
+            </div>
+            <div class="col-sm-6">
+                <button class="btn btn-danger" (click)="discardChanges()">Cancel</button>
+            </div>
+        </div>
+    </form>
 </div>
